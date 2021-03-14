@@ -33,7 +33,7 @@ console.log(this.state.text);
               value={this.state.text}
               onChange={(event) => this.changeInputText(event.target.value)}
             ></textarea>
-            <button type="submit" >
+            <button type="submit" disabled={this.state.text.length>140}>
               Tweet
             </button>
           </label>
@@ -42,5 +42,4 @@ console.log(this.state.text);
     );
   }
 }
-// disabled={!this.state.text}
 export default FormTwit
