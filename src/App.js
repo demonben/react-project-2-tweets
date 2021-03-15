@@ -11,6 +11,11 @@ constructor(props){
     tweets:[]
   } 
 }
+  callBack(data){
+  this.setState({tweets : JSON.parse(data)});
+  console.log(this.state.tweets)
+}
+
   addTweet(text){
 this.setState((prevState)=>{
   const tweet = {
@@ -23,10 +28,12 @@ this.setState((prevState)=>{
   }
 })
 }
+
+
 render(){
   return (
     <div className="App">
-      <FormTweet changeText={(text) => { this.addTweet(text)}}/>
+      <FormTweet dataForStorage={this.state.tweets} changeText={(text) => { this.addTweet(text) }} callBack={(data) => this.callBack(data)}/>
       <ListTweets dataForList={this.state.tweets}></ListTweets>
     </div>
   );

@@ -7,7 +7,7 @@ class ListTweets extends React.Component {
     this.state = {};
   }
   render() {
-    console.log(this.props.dataForList);
+    // console.log(this.props.dataForList);
     return (
       <div>
         {this.props.dataForList.reverse().map((tweet, index) => (
