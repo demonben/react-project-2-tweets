@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import FormTwit from './components/FormTwit'
+import FormTweet from './components/FormTweet'
+import ListTweets from './components/ListTweets';
+import Tweet from './components/Tweet';
 
 class App extends React.Component {
 constructor(props){
@@ -9,8 +11,6 @@ constructor(props){
     tweets:[]
   } 
 }
-  
-
   addTweet(text){
 this.setState((prevState)=>{
   const tweet = {
@@ -18,20 +18,16 @@ this.setState((prevState)=>{
     text: text,
     time: new Date()+""
   }
-  
-
   return{ 
     tweets: [...prevState.tweets, tweet]
   }
-  
 })
-
 }
 render(){
-  console.log(this.state.tweets)
   return (
     <div className="App">
-      <FormTwit changeText={(text) => { this.addTweet(text)}}/>
+      <FormTweet changeText={(text) => { this.addTweet(text)}}/>
+      <ListTweets dataForList={this.state.tweets}></ListTweets>
     </div>
   );
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-class FormTwit extends React.Component {
+class FormTweet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,6 @@ class FormTwit extends React.Component {
   formSubmit(event){
       event.preventDefault();
 this.props.changeText(this.state.text)
-console.log(this.state.text);
   }
   
   render() {
@@ -42,4 +41,4 @@ console.log(this.state.text);
     );
   }
 }
-export default FormTwit
+export default FormTweet;
