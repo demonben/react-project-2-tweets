@@ -3,6 +3,7 @@ import './App.css';
 import FormTweet from './components/FormTweet'
 import ListTweets from './components/ListTweets';
 import Tweet from './components/Tweet';
+import { getData } from './lib/api'
 
 class App extends React.Component {
 constructor(props){
@@ -11,6 +12,15 @@ constructor(props){
     tweets:[]
   } 
 }
+componentDidMount(){
+  this.loadTweets()
+}
+async loadTweets(){
+  const tweetFromServer = await getData()
+  console.log(tweetFromServer)
+  this.setState({ tweets: tweetFromServer})
+}
+
   callBack(data){
   this.setState({tweets : JSON.parse(data)});
   console.log(this.state.tweets)

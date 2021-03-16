@@ -9,16 +9,15 @@ class FormTweet extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('hello world')
     localStorage.setItem("data", JSON.stringify(this.props.dataForStorage));
   }
 
   async componentDidMount(){
-      console.log(this.props.dataForStorage);
+      // console.log(this.props.dataForStorage);
 
     if (localStorage.length !== 0) {
       let data = await localStorage.getItem("data");
-      console.log(data);
+
       this.props.callBack(data);
     }
   }
@@ -30,7 +29,6 @@ class FormTweet extends React.Component {
   formSubmit(event) {
     event.preventDefault();
     this.props.changeText(this.state.text);
-    // console.log(this.props.dataForStorage.length);
   }
 
   render() {

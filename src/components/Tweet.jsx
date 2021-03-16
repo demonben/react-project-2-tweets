@@ -8,16 +8,12 @@ class Tweet extends React.Component {
     };
   }
 render(){
-    // console.log(this.props.tweet);
 
-    // {
-    //   this.state.text;
-    // }
     return (
       <div>
-          <p>Dima</p>
-        <p>{this.props.tweet.time}</p>
-        <p>{this.props.tweet.text}</p>
+          <p>{this.props.tweet.userName}</p>
+        <p>{this.props.tweet.date}</p>
+        <p>{this.props.tweet.content}</p>
       </div>
     );
 }
