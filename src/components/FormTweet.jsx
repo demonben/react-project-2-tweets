@@ -1,4 +1,6 @@
 import React from "react";
+import {postData} from "../lib/api"
+
 
 class FormTweet extends React.Component {
   constructor(props) {
@@ -8,19 +10,18 @@ class FormTweet extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    localStorage.setItem("data", JSON.stringify(this.props.dataForStorage));
-  }
+  // componentDidUpdate() {
+  //   localStorage.setItem("data", JSON.stringify(this.props.dataForStorage));
+  // }
 
-  async componentDidMount(){
-      // console.log(this.props.dataForStorage);
+  // async componentDidMount(){
 
-    if (localStorage.length !== 0) {
-      let data = await localStorage.getItem("data");
+  //   if (localStorage.length !== 0) {
+  //     let data = await localStorage.getItem("data");
 
-      this.props.callBack(data);
-    }
-  }
+  //     this.props.callBack(data);
+  //   }
+  // }
 
   changeInputText(value) {
     this.setState({ text: value });
@@ -28,7 +29,9 @@ class FormTweet extends React.Component {
   }
   formSubmit(event) {
     event.preventDefault();
-    this.props.changeText(this.state.text);
+    postData(this.state.text)
+    // this.postTweet(this.text)
+    // this.props.changeText(this.state.text);
   }
 
   render() {
@@ -47,7 +50,11 @@ class FormTweet extends React.Component {
               value={this.state.text}
               onChange={(event) => this.changeInputText(event.target.value)}
             ></textarea>
-            <button type="submit" disabled={this.state.text.length > 140}>
+            <button
+              type="submit"
+              disabled={this.state.text.length > 140}
+              postTweet={this.postTweet}
+            >
               Tweet
             </button>
           </label>

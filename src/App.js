@@ -4,6 +4,8 @@ import FormTweet from './components/FormTweet'
 import ListTweets from './components/ListTweets';
 import Tweet from './components/Tweet';
 import { getData } from './lib/api'
+import { postData} from "./lib/api"
+
 
 class App extends React.Component {
 constructor(props){
@@ -14,16 +16,19 @@ constructor(props){
 }
 componentDidMount(){
   this.loadTweets()
+  setInterval(()=>{this.loadTweets()}, 1500)
 }
 async loadTweets(){
   const tweetFromServer = await getData()
-  console.log(tweetFromServer)
   this.setState({ tweets: tweetFromServer})
 }
 
+postTweet = async (value) =>{
+  console.log(value)
+  // postData()
+}
   callBack(data){
   this.setState({tweets : JSON.parse(data)});
-  console.log(this.state.tweets)
 }
 
   addTweet(text){
@@ -33,6 +38,7 @@ this.setState((prevState)=>{
     text: text,
     time: new Date()+""
   }
+
   return{ 
     tweets: [...prevState.tweets, tweet]
   }
