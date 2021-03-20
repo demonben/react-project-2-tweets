@@ -8,11 +8,17 @@ export async function getData(){
 }
 
 
-export async function postData(value){
+export async function postData(value,userName){
     const date = new Date().toISOString()
     
-    const obj = { content: value, userName: "Dima", date: date  }
+    const obj = { content: value, userName: userName, date: date  }
     console.log(obj)
-    const response = await axios.post(`${BaseUrl}/tweet`, obj)
-    return response.data;
+    try{
+
+        const response = await axios.post(`${BaseUrl}/tweet`, obj)
+        return response.data;
+    }
+    catch(err){
+     alert("something goes wrong")
+    }
 }

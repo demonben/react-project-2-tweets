@@ -2,25 +2,31 @@ import React from 'react';
 import './App.css';
 import FormTweet from './components/FormTweet'
 import ListTweets from './components/ListTweets';
+import Loader from './components/loader';
 import Tweet from './components/Tweet';
 import { getData } from './lib/api'
 import { postData} from "./lib/api"
+import {BrowserRouter as Router, Switch, Route,Link} from "react-router-dom"
+import NavBar from './components/NavBar';
+import Profile from "./components/Profile"
 
 
 class App extends React.Component {
 constructor(props){
   super(props);
   this.state = {
-    tweets:[]
+    tweets:[],
+    isLoading:false,
   } 
 }
 componentDidMount(){
   this.loadTweets()
-  setInterval(()=>{this.loadTweets()}, 1500)
+  setInterval(()=>{this.loadTweets()}, 2000)
 }
 async loadTweets(){
+  this.setState({isLoading:true})
   const tweetFromServer = await getData()
-  this.setState({ tweets: tweetFromServer})
+  this.setState({ tweets: tweetFromServer, isLoading: false})
 }
 
 postTweet = async (value) =>{
@@ -30,27 +36,52 @@ postTweet = async (value) =>{
   callBack(data){
   this.setState({tweets : JSON.parse(data)});
 }
-
-  addTweet(text){
+callBacker(){
+  console.log('wp')
+}
+  addTweet(text,userName){
 this.setState((prevState)=>{
   const tweet = {
     id: Date.now(),
     text: text,
-    time: new Date()+""
+    time: new Date()+"",
+    userName:""
   }
-
   return{ 
     tweets: [...prevState.tweets, tweet]
   }
 })
 }
+  userNameChanger(value) {
+    this.setState({ userName: value });
+    console.log(this.state.userName)
+  
+  }
 
 
 render(){
+
   return (
+    
     <div className="App">
-      <FormTweet dataForStorage={this.state.tweets} changeText={(text) => { this.addTweet(text) }} callBack={(data) => this.callBack(data)}/>
-      <ListTweets dataForList={this.state.tweets}></ListTweets>
+
+      <Router>
+        <NavBar></NavBar>
+        <Switch>
+          <Router path="/home">
+            <FormTweet isButtonIsDisable={this.state.isLoading} dataForStorage={this.state.tweets} changeText={(text) => { this.addTweet(text) }} callBack={(data) => this.callBack(data)} userName={this.state.userName}/>
+            {this.state.isLoading && <Loader></Loader>}
+            <ListTweets dataForList={this.state.tweets}></ListTweets>
+          </Router>
+          <Router path="/profile">
+            <Profile
+              userNameChanger={(data)=>this.userNameChanger(data)}
+             ></Profile>
+          </Router>
+        </Switch>
+      </Router>
+
+     
     </div>
   );
 
