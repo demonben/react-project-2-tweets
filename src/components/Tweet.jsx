@@ -1,4 +1,6 @@
 import React from "react";
+// import TweetContext from "../TweetContext";
+
 
 class Tweet extends React.Component {
   constructor(props) {
@@ -11,7 +13,8 @@ render(){
 
     return (
       <div>
-          <p>{this.props.tweet.userName}</p>
+        {/* {console.log("hey")} */}
+        <p>{this.props.tweet.userName}</p>
         <p>{this.props.tweet.date}</p>
         <p>{this.props.tweet.content}</p>
       </div>

@@ -11,7 +11,6 @@ class Profile extends React.Component {
   changUser(event) {
       event.preventDefault();
       this.setState({ userName: event });
-      console.log(this.state.userName);
   }
 
   render() {

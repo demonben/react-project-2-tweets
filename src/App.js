@@ -3,12 +3,11 @@ import './App.css';
 import FormTweet from './components/FormTweet'
 import ListTweets from './components/ListTweets';
 import Loader from './components/loader';
-import Tweet from './components/Tweet';
 import { getData } from './lib/api'
-import { postData} from "./lib/api"
-import {BrowserRouter as Router, Switch, Route,Link} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import NavBar from './components/NavBar';
 import Profile from "./components/Profile"
+import TweetContext from "./TweetContext"
 
 
 class App extends React.Component {
@@ -57,10 +56,7 @@ this.setState((prevState)=>{
     console.log(this.state.userName)
   
   }
-
-
 render(){
-
   return (
     
     <div className="App">
@@ -71,7 +67,9 @@ render(){
           <Router path="/home">
             <FormTweet isButtonIsDisable={this.state.isLoading} dataForStorage={this.state.tweets} changeText={(text) => { this.addTweet(text) }} callBack={(data) => this.callBack(data)} userName={this.state.userName}/>
             {this.state.isLoading && <Loader></Loader>}
+            <TweetContext.Provider value={this.state.tweets}>
             <ListTweets dataForList={this.state.tweets}></ListTweets>
+            </TweetContext.Provider>
           </Router>
           <Router path="/profile">
             <Profile

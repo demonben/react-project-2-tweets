@@ -19,7 +19,6 @@ class FormTweet extends React.Component {
     postData(this.state.text,this.props.userName)
 
   }
-
   render() {
     // {console.log(
     //   this.props.isButtonIsDisable)
@@ -44,7 +43,7 @@ class FormTweet extends React.Component {
               disabled={
                 this.state.text.length > 140 ||  this.props.isButtonIsDisable
               }
-              postTweet={this.postTweet}
+              // postTweet={this.postTweet}
             >
               Tweet
             </button>

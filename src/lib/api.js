@@ -10,11 +10,10 @@ export async function getData(){
 
 export async function postData(value,userName){
     const date = new Date().toISOString()
-    
+    // { console.log(value)}
+    // { console.log(userName) }
     const obj = { content: value, userName: userName, date: date  }
-    console.log(obj)
     try{
-
         const response = await axios.post(`${BaseUrl}/tweet`, obj)
         return response.data;
     }

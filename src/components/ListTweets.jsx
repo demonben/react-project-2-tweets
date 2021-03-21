@@ -1,20 +1,21 @@
 import React from "react";
 import Tweet from "./Tweet";
+import TweetContext from "../TweetContext";
 
-class ListTweets extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <div>
-        {this.props.dataForList.map((tweet, index) => (
-          <Tweet key={tweet.id} tweet={tweet} index={index}></Tweet>
-        ))}
-      </div>
-    );
-  }
+
+
+function ListTweets() {
+  return (
+    <TweetContext.Consumer>
+      {(tweets) => (
+        <div>
+          {tweets.map((tweet, index) => {      
+           return <Tweet key={tweet.id} tweet={tweet} index={index}></Tweet>;
+          })}
+        </div>
+      )}
+    </TweetContext.Consumer>
+  );
 }
 
 export default ListTweets;
