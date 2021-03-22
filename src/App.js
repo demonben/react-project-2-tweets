@@ -20,7 +20,7 @@ constructor(props){
 }
 componentDidMount(){
   this.loadTweets()
-  setInterval(()=>{this.loadTweets()}, 2000)
+  setInterval(()=>{this.loadTweets()}, 10000)
 }
 async loadTweets(){
   this.setState({isLoading:true})

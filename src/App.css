@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #15202b;
 }
 
 .App-logo {
@@ -35,4 +36,75 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.textarea {
+  width: 600px;
+  height: 180px;
+  border: 2px solid #cccccc;
+  border-radius: 6px;
+
+  margin-top: 47px;
+}
+.button {
+  position: absolute;
+  bottom: 26px;
+  left: 503px;
+}
+.label {
+  position: relative;
+}
+.barnav {
+  text-decoration: none;
+  width: 1076px;
+  height: 58px;
+  background-color: #343a40;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  text-decoration: none;
+  margin-left: 30px;
+}
+.tweetList {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.tweet {
+  width: 700px;
+  height: 150px;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-top: 15px;
+  background-color: #343a40;
+}
+.inputUser {
+  border: 2px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 6px;
+  width: 600px;
+  height: 61px;
+}
+.navContainer {
+  display: flex;
+  align-items: center;
+}
+.headerProfile {
+  color: #ffffff;
+}
+.profile {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: white;
+}
+.profileContainer {
+  height: 700px;
+}
+textarea {
+  background-color: #15202b;
+  color: #fff;
 }

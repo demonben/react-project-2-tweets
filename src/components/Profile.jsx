@@ -12,13 +12,15 @@ class Profile extends React.Component {
       event.preventDefault();
       this.setState({ userName: event });
   }
-
+putUserNameInLocalStorage(){
+localStorage.setItem("username", this.state.userName);
+}
   render() {
     return (
       <>
-        <div>
-          <h2>Profile</h2>
-          <p>USER NAME</p>
+        <div className="profileContainer">
+          <h2 className="headerProfile">Profile</h2>
+          <p className="profile">USER NAME</p>
           <form
             onSubmit={(event) => {
               this.changUser(event);
@@ -26,14 +28,25 @@ class Profile extends React.Component {
           >
             <label htmlFor="text">
               <textarea
+                className="inputUser"
                 type="text"
                 name="text"
-                id="text"    
-                onChange={(event) => this.setState({userName:event.target.value})}
+                id="text"
+                onChange={(event) =>
+                  this.setState({ userName: event.target.value })
+                }
               ></textarea>
-              <button onClick={(x)=>this.props.userNameChanger(this.state.userName)}>
+              <p>
+
+              <button
+                className=" btn btn-primary"
+                // onClick={(x) => this.props.userNameChanger(this.state.userName)}
+                onClick={() => this.putUserNameInLocalStorage()}
+                //
+                >
                 Save
               </button>
+                </p>
             </label>
           </form>
         </div>

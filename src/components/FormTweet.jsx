@@ -1,28 +1,28 @@
 import React from "react";
-import {postData} from "../lib/api"
-
+import { postData } from "../lib/api";
 
 class FormTweet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       text: "",
+      userName: "",
     };
   }
 
   changeInputText(value) {
     this.setState({ text: value });
-    
   }
   formSubmit(event) {
     event.preventDefault();
-    postData(this.state.text,this.props.userName)
+    postData(this.state.text, this.state.userName);
+  }
+  componentDidMount() {
+    let user = localStorage.getItem("username");
 
+    this.setState({ userName: user });
   }
   render() {
-    // {console.log(
-    //   this.props.isButtonIsDisable)
-    // }
     return (
       <div>
         <form
@@ -30,8 +30,10 @@ class FormTweet extends React.Component {
             this.formSubmit(event);
           }}
         >
-          <label htmlFor="text">
+          <label className="label" htmlFor="text">
             <textarea
+              placeholder="What you have in mind..."
+              className="textarea"
               type="text"
               name="text"
               id="text"
@@ -39,9 +41,10 @@ class FormTweet extends React.Component {
               onChange={(event) => this.changeInputText(event.target.value)}
             ></textarea>
             <button
+              className="button btn btn-primary"
               type="submit"
               disabled={
-                this.state.text.length > 140 ||  this.props.isButtonIsDisable
+                this.state.text.length > 140 || this.props.isButtonIsDisable
               }
               // postTweet={this.postTweet}
             >

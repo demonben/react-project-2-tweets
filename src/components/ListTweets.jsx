@@ -8,7 +8,7 @@ function ListTweets() {
   return (
     <TweetContext.Consumer>
       {(tweets) => (
-        <div>
+        <div className="tweetList">
           {tweets.map((tweet, index) => {      
            return <Tweet key={tweet.id} tweet={tweet} index={index}></Tweet>;
           })}

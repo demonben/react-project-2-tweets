@@ -12,8 +12,7 @@ class Tweet extends React.Component {
 render(){
 
     return (
-      <div>
-        {/* {console.log("hey")} */}
+      <div className="tweet">
         <p>{this.props.tweet.userName}</p>
         <p>{this.props.tweet.date}</p>
         <p>{this.props.tweet.content}</p>
