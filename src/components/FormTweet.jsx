@@ -1,5 +1,5 @@
 import React from "react";
-import { postData } from "../lib/api";
+import { postData, getData } from "../lib/api";
 
 class FormTweet extends React.Component {
   constructor(props) {
@@ -7,6 +7,7 @@ class FormTweet extends React.Component {
     this.state = {
       text: "",
       userName: "",
+      // updatedTweets: [],
     };
   }
 
@@ -15,14 +16,26 @@ class FormTweet extends React.Component {
   }
   formSubmit(event) {
     event.preventDefault();
-    postData(this.state.text, this.state.userName);
+    postData(this.state.text, this.state.userName).then(
+      () => {
+        getData().then((response) => {
+          // this.setState({ updatedTweets: response });
+          this.props.updateTweets(response);
+        });
+      }
+    )
+    
   }
   componentDidMount() {
     let user = localStorage.getItem("username");
-
+    
     this.setState({ userName: user });
   }
   render() {
+  //  {console.log(this.state.updatedTweets)}
+    // {console.log(
+    //   this.props.isButtonIsDisable)
+    // }
     return (
       <div>
         <form

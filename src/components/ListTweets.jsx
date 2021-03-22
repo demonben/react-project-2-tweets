@@ -9,8 +9,9 @@ function ListTweets() {
     <TweetContext.Consumer>
       {(tweets) => (
         <div className="tweetList">
-          {tweets.map((tweet, index) => {      
-           return <Tweet key={tweet.id} tweet={tweet} index={index}></Tweet>;
+          {console.log(tweets)}
+          {tweets.map((tweet, index) => {
+            return <Tweet key={tweet.id} tweet={tweet} index={index}></Tweet>;
           })}
         </div>
       )}

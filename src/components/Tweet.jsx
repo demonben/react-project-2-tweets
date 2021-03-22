@@ -13,9 +13,13 @@ render(){
 
     return (
       <div className="tweet">
-        <p>{this.props.tweet.userName}</p>
-        <p>{this.props.tweet.date}</p>
-        <p>{this.props.tweet.content}</p>
+        <div className="userAndDate">
+          <p>{this.props.tweet.userName}</p>
+          <p>{this.props.tweet.date}</p>
+        </div>
+        <div className="content">
+          <p>{this.props.tweet.content}</p>
+        </div>
       </div>
     );
 }

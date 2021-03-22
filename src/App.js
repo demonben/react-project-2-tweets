@@ -20,7 +20,8 @@ constructor(props){
 }
 componentDidMount(){
   this.loadTweets()
-  setInterval(()=>{this.loadTweets()}, 10000)
+  // setInterval(()=>{this.loadTweets()}, 10000)
+  // this.loadTweets()
 }
 async loadTweets(){
   this.setState({isLoading:true})
@@ -28,10 +29,15 @@ async loadTweets(){
   this.setState({ tweets: tweetFromServer, isLoading: false})
 }
 
-postTweet = async (value) =>{
-  console.log(value)
-  // postData()
+updateTweets = (res) => {
+  // console.log(res)
+  this.setState({ tweets: res} )
 }
+
+// postTweet = async (value) =>{
+//   console.log(value)
+//   // postData()
+// }
   callBack(data){
   this.setState({tweets : JSON.parse(data)});
 }
@@ -65,7 +71,7 @@ render(){
         <NavBar></NavBar>
         <Switch>
           <Router path="/home">
-            <FormTweet isButtonIsDisable={this.state.isLoading} dataForStorage={this.state.tweets} changeText={(text) => { this.addTweet(text) }} callBack={(data) => this.callBack(data)} userName={this.state.userName}/>
+            <FormTweet isButtonIsDisable={this.state.isLoading} dataForStorage={this.state.tweets} changeText={(text) => { this.addTweet(text) }} callBack={(data) => this.callBack(data)} userName={this.state.userName} updateTweets={this.updateTweets}/>
             {this.state.isLoading && <Loader></Loader>}
             <TweetContext.Provider value={this.state.tweets}>
             <ListTweets dataForList={this.state.tweets}></ListTweets>

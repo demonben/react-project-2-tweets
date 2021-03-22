@@ -62,6 +62,7 @@
   border-radius: 6px;
   display: flex;
   align-items: center;
+  margin-left: 12.7vw;
 }
 
 .nav-item {
@@ -80,6 +81,7 @@
   border-radius: 6px;
   margin-top: 15px;
   background-color: #343a40;
+  padding: 20px;
 }
 .inputUser {
   border: 2px solid #cccccc;
@@ -107,4 +109,18 @@
 textarea {
   background-color: #15202b;
   color: #fff;
+}
+.userAndDate{
+display: flex;
+align-content: space-between;
+justify-content: space-between;
+color: #6C757D;;
+}
+.content{
+word-wrap: break-word;
+text-align: left;
+}
+a{
+  color:rgba(255, 255, 255, 0.5);
+  
 }
