@@ -7,7 +7,6 @@ class FormTweet extends React.Component {
     this.state = {
       text: "",
       userName: "",
-      // updatedTweets: [],
     };
   }
 
@@ -16,26 +15,18 @@ class FormTweet extends React.Component {
   }
   formSubmit(event) {
     event.preventDefault();
-    postData(this.state.text, this.state.userName).then(
-      () => {
-        getData().then((response) => {
-          // this.setState({ updatedTweets: response });
-          this.props.updateTweets(response);
-        });
-      }
-    )
-    
+    postData(this.state.text, this.state.userName).then(() => {
+      getData().then((response) => {
+        this.props.updateTweets(response);
+      });
+    });
   }
   componentDidMount() {
     let user = localStorage.getItem("username");
-    
+
     this.setState({ userName: user });
   }
   render() {
-  //  {console.log(this.state.updatedTweets)}
-    // {console.log(
-    //   this.props.isButtonIsDisable)
-    // }
     return (
       <div>
         <form
@@ -59,7 +50,6 @@ class FormTweet extends React.Component {
               disabled={
                 this.state.text.length > 140 || this.props.isButtonIsDisable
               }
-              // postTweet={this.postTweet}
             >
               Tweet
             </button>

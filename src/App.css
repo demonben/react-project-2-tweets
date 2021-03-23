@@ -110,17 +110,16 @@ textarea {
   background-color: #15202b;
   color: #fff;
 }
-.userAndDate{
-display: flex;
-align-content: space-between;
-justify-content: space-between;
-color: #6C757D;;
+.userAndDate {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  color: #6c757d;
 }
-.content{
-word-wrap: break-word;
-text-align: left;
+.content {
+  word-wrap: break-word;
+  text-align: left;
 }
-a{
-  color:rgba(255, 255, 255, 0.5);
-  
+a {
+  color: rgba(255, 255, 255, 0.5);
 }

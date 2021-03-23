@@ -1,16 +1,11 @@
 import React from "react";
-// import TweetContext from "../TweetContext";
-
 
 class Tweet extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-  
-    };
+    this.state = {};
   }
-render(){
-
+  render() {
     return (
       <div className="tweet">
         <div className="userAndDate">
@@ -22,7 +17,7 @@ render(){
         </div>
       </div>
     );
-}
+  }
 }
 
-export default Tweet
+export default Tweet;

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -9,12 +8,12 @@ class Profile extends React.Component {
     };
   }
   changUser(event) {
-      event.preventDefault();
-      this.setState({ userName: event });
+    event.preventDefault();
+    this.setState({ userName: event });
   }
-putUserNameInLocalStorage(){
-localStorage.setItem("username", this.state.userName);
-}
+  putUserNameInLocalStorage() {
+    localStorage.setItem("username", this.state.userName);
+  }
   render() {
     return (
       <>
@@ -37,16 +36,13 @@ localStorage.setItem("username", this.state.userName);
                 }
               ></textarea>
               <p>
-
-              <button
-                className=" btn btn-primary"
-                // onClick={(x) => this.props.userNameChanger(this.state.userName)}
-                onClick={() => this.putUserNameInLocalStorage()}
-                //
+                <button
+                  className=" btn btn-primary"
+                  onClick={() => this.putUserNameInLocalStorage()}
                 >
-                Save
-              </button>
-                </p>
+                  Save
+                </button>
+              </p>
             </label>
           </form>
         </div>
