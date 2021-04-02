@@ -9,6 +9,7 @@ class Profile extends React.Component {
   }
   changUser(event) {
     event.preventDefault();
+    
     this.setState({ userName: event });
   }
   putUserNameInLocalStorage() {
