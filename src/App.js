@@ -27,6 +27,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+
 function App() {
   const [authUser, setAuthUser] = useState(null)
   const login = async (authUser) => {

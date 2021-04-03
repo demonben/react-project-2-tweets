@@ -28,6 +28,7 @@ class ChatRoom extends React.Component {
     const unsubscribe = firebase
       .firestore()
       .collection("messages")
+      .limit(10)
       .orderBy("date", "desc")
       .onSnapshot((snap) => {
         const messages = snap.docs.map((doc) => ({
@@ -39,6 +40,9 @@ class ChatRoom extends React.Component {
     return () => {
       unsubscribe();
     };
+  }
+ userImageChanger(data) {
+console.log(data)
   }
   render() {
     return (
@@ -64,7 +68,7 @@ class ChatRoom extends React.Component {
             </Router>
             <Router path="/profile">
               <Profile
-              // userNameChanger={(data) => this.userNameChanger(data)}
+                userImageChanger={(data) => this.userImageChanger(data)}
               ></Profile>
             </Router>
           </Switch>
