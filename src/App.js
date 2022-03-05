@@ -48,7 +48,6 @@ function App() {
     });
   }, []);
   return (
-    // <div className="App"></div>
     <AuthContext.Provider value={{
       authUser,
       login,
