@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FormTweet from "../components/FormTweet";
 import ListTweets from "../components/ListTweets";
 import Loader from "../components/loader";
@@ -10,72 +10,37 @@ import TweetContext from "../TweetContext";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-class ChatRoom extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tweets: [],
-      isLoading: false,
-    };
-  }
-  async addTweet(data) {
-    console.log(data);
-    await firebase.firestore().collection("messages").add(data);
-  }
-
-  componentDidMount() {
-    this.setState({ isLoading: true });
-    const unsubscribe = firebase
-      .firestore()
-      .collection("messages")
-      .limit(10)
-      .orderBy("date", "desc")
-      .onSnapshot((snap) => {
-        const messages = snap.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        this.setState({ tweets: messages, isLoading: false });
-      });
-    return () => {
-      unsubscribe();
-    };
-  }
- userImageChanger(data) {
-console.log(data)
-  }
-  render() {
-    return (
-      <div className="App">
-        <Router>
-          <NavBar />
+export default function ChatRoom() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [tweets, setTweets] = useState([]);
+  const addTweet = async (date) => {
+    console.log(date);
+    await firebase.firestore().collection("messages").add(date);
+  };
+  return (
+    <div className="App">
+      <Router>
+        <NavBar/>
           <Switch>
             <Router exact path="/">
               <FormTweet
-                isButtonIsDisable={this.state.isLoading}
-                dataForStorage={this.state.tweets}
-                addTweet={(text) => this.addTweet(text)}
-                addTweet={this.addTweet}
-                userName={this.state.userName}
-                // updateTweets={this.updateTweets}
+                isButtonIsDisable={isLoading}
+                dataForStorage={tweets}
+                addTweet={(text) => addTweet(text)}
+                // addTweet={addTweet}
+                // userName={userName}
               />
-              {this.state.isLoading && <Loader></Loader>}
-              <TweetContext.Provider value={this.state.tweets}>
-                <ListTweets
-                // dataForList={this.state.tweets}
-                ></ListTweets>
+              {isLoading && <Loader />}
+              <TweetContext.Provider value={tweets}>
+                <ListTweets tweets={tweets}></ListTweets>
               </TweetContext.Provider>
             </Router>
             <Router path="/profile">
-              <Profile
-                userImageChanger={(data) => this.userImageChanger(data)}
-              ></Profile>
+              <Profile></Profile>
             </Router>
           </Switch>
-        </Router>
-      </div>
-    );
-  }
+      </Router>
+    </div>
+  );
 }
 
-export default ChatRoom;
